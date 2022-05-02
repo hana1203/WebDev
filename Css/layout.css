@@ -1,0 +1,50 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .container {
+    display: flex;
+    flex: 1;
+  }
+  main {
+    flex: 1;
+    padding: 0 20px;
+  }
+  nav {
+    flex: 0 0 180px;
+    padding: 0 10px;
+  }
+  aside {
+    flex: 0 0 130px;
+    padding: 0 10px;
+  }
+
+
+/*
+id 로 스타일링 적용
+h4 navigation 의 컬러를 red 로 바꾸고 싶으면?
+h4는 두개 요소가 있는데 navigation 부분에만 컬러를 바꾸고 싶으면 html 파일에 id 를 적용해서 id 값을 불러온다 
+<h4>This is the navigation section.</h4>
+<h4>This is an aside section.</h4>
+<h4 id="navigation-title">This is the navigation section.</h4>
+*/
+#navigation-title {
+color: red;
+}
+
+/* 
+class 로 스타일 분류하여 적용
+navigation 밑의 li 에 밑줄을 긋고 싶으면? 
+*/
+.menu-item {
+    text-decoration: underline;
+}
+
+/* 
+여러개의 class 를 한개의 요소에 적용하기
+*/
+.selected {
+    font-weight: bold;
+    color: #009999;
+  }
