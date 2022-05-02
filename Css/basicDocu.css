@@ -1,0 +1,25 @@
+h1 {
+    background: gray;
+    width: 60%;
+  }
+  
+  p {
+    background: rgba(255,84,104,0.3);
+    width: 80%;
+    height: 200px;
+    border: 2px solid red;
+    margin: 10px 20px 30px 40px;
+    padding: 10px; 
+    height: 40px;
+    /* overflow: auto;  */
+    /* 박스보다 튀어나오는 콘텐츠에는 overflow 속성을 이용해서 스크롤을 자동적으로 추가 */
+    overflow: hidden;
+    /* 넘치는 콘텐츠 보여주고 싶지 않을때 */
+  }
+  
+  span {
+    background: yellow;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+  }
