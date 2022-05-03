@@ -22,16 +22,25 @@ main {
  
     /* align-items: stretch; */
     
-    flex: 0 1 auto;
+    /* flex: 0 1 auto; */
+    flex: 0 1 50px;
     /* flex 속성값 각각 따로 설정도 가능
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
      */
-
-
-
 }
+
+/* 자식 박스는 얼마나 늘어나는지? */
+/* #box1 {
+    flex-grow: 1;
+}
+#box2 {
+    flex-grow: 1;
+}
+#box3 {
+    flex-grow: 9;
+} */
 
 div {
     border: 1px solid green;
