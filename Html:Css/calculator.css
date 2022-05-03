@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* 브라우저 화면 높이를 넣어야지 화면 정가운데 위치. 안쓰면 위에 딱붙음 */
+}
+
+.calculator{
+    width: 350px;
+    height: 500px;
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+}
+
+.section1 {
+    flex: 1 0 0;
+    background-color: orange;
+    margin: 3px;
+    padding: 10px;
+}
+
+.section2 {
+    display: flex;
+    flex: 4 0 0;
+    background-color: orange;
+    margin: 3px;
+    padding: 10px;
+}
+.smallSection {
+    display: flex;
+    flex-direction: column;
+    flex: 3 0 0;
+    background-color: yellow;
+    margin: 3px;
+    padding: 10px;
+}
+.etc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    background-color: green;
+    margin: 3px;
+    padding: 10px;
+}
+.number {
+    display: flex;
+    flex-direction: column;
+    flex: 4 0 0;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    /* width: 100%; */
+    margin: 3px;
+    padding: 10px;
+}
+
+.operator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    background-color: yellow;
+    margin: 3px;
+    padding: 10px;
+}
+
+.button {
+    width: 50px;
+    height: 50px;
+    margin: 3px;
+}
+.line4 {
+    display: flex;
+}
+.zero {
+    flex: 2 0 0;
+}
+.decimal {
+    /* flex: 1 0 0; */
+    flex: 0 0 50px;
+}
