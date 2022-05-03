@@ -1,0 +1,43 @@
+main {
+    /* width: 10rem;
+    height: 40rem; */
+    border: 1px dotted red;
+    display: flex;
+    /* flex-direction: column-reverse; */ 
+    /* flex-wrap: wrap-reverse;   밑에서부터 쌓는것 */
+    flex-wrap: wrap;
+    flex-direction: row;
+    /* justify-content: flex-start; 왼쪽 정렬 */
+    /* justify-content: flex-end;  오른쪽 정렬 */
+    /* justify-content: center; 가운데 정렬 */
+    /* justify-content: space-between; */
+    /* 박스 사이의 간격을 모두 균일하게 하기. 첫번째, 마지막 박스에는 간격 안생김*/
+    /* justify-content: space-around; */
+    /* 모든 박스에 간격 두르기 */
+
+    /* align-items: baseline;     */
+    /* 베이스라인에서 시작 */
+    /* align-items: flex-end;    */
+    /* 맨 마지막 박스 간격없이 밑으로 바짝 붙기 */
+ 
+    /* align-items: stretch; */
+    
+    flex: 0 1 auto;
+    /* flex 속성값 각각 따로 설정도 가능
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+     */
+
+
+
+}
+
+div {
+    border: 1px solid green;
+}
+
+* {
+    margin: 10px;
+    padding: 10px;
+}
