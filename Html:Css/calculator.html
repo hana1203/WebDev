@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="calculator.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Radio+Canada:wght@300&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,31 +13,38 @@
 </head>
 <body>
     <div class="calculator">
-        <div class="section1"></div>
+        <div class="section1">
+            <div class="click">
+                <button class="close"></button>
+                <button class="minimize"></button>
+                <button class="maximize"></button>
+            </div>
+            <div class="input">0</div>
+        </div>
         <div class="section2">
             <div class="smallSection">
                 <div class="etc">
                     <button class="button clear">AC</button>
-                    <button class="button reverse">+/-</button>
+                    <button class="button reverse">+/−</button>
                     <button class="button percent">%</button>
                 </div>
                 <div class="number">
-                    <div class="line1">
+                    <div class="line">
                         <button class="button">7</button>
                         <button class="button">8</button>
                         <button class="button">9</button>
                     </div>
-                    <div class="line2">
+                    <div class="line">
                         <button class="button">4</button>
                         <button class="button">5</button>
                         <button class="button">6</button>
                     </div>
-                    <div class="line3">
+                    <div class="line">
                         <button class="button">1</button>
                         <button class="button">2</button>
                         <button class="button">3</button>
                     </div>
-                    <div class="line4">
+                    <div class="line">
                         <button class="button zero">0</button>
                         <button class="button decimal">.</button>
                     </div>
@@ -41,9 +52,9 @@
             </div>
 
             <div class="operator">
-                <button class="button divide">/</button>
-                <button class="button multiply">x</button>
-                <button class="button minus">-</button>
+                <button class="button divide">÷</button>
+                <button class="button multiply">×</button>
+                <button class="button minus">−</button>
                 <button class="button plus">+</button>
                 <button class="button equal">=</button>
 

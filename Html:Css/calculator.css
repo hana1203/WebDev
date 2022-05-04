@@ -2,6 +2,10 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-size: x-large;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bolder;
+    color: white;
 }
 
 body {
@@ -13,85 +17,161 @@ body {
 }
 
 .calculator{
-    width: 350px;
-    height: 500px;
-    border: 1px solid blue;
-    display: flex;
+    /* width: 350px; */
+    height: 550px;
+    /* border: 1px solid blue; */
+    display: flex; 
+    /* 자식요소 크기만큼 늘어나게해서 width 안줘도됨 */
     flex-direction: column;
     /* cloumn 해야지 전체 calculator 바디가 위에서부터 밑으로 정렬 */
+    border-radius: 15px;
+    /* background-color: #424750; */
+    background-color: #424242;
 }
 
+.click {
+    display: flex;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+.click > button {
+    border: unset;
+    width: 15px;
+    height: 15px;
+    border-radius: 50px;
+    margin: 6px;
+    display: flex;
+    font-size: small;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    /* background-color: transparent; */
+    /* flex-direction: ;
+    justify-content: space-around; */
+}
+.close {
+    background-color: red;
+}
+.minimize {
+    background-color: yellow;
+}
+.maximize {
+    background-color: green;
+}
+
+.input {
+    font-size: xx-large;
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: 50px;
+    margin-right: 20px;
+
+}
 .section1 {
     flex: 1 0 0;
-    background-color: orange;
-    margin: 3px;
-    padding: 10px;
+    /* background-color: #424242; */
+    /* margin: 3px;
+    padding: 10px; */
+    border-radius: 15px 15px 0 0;
 }
 
 .section2 {
     display: flex;
-    flex: 4 0 0;
-    background-color: orange;
-    margin: 3px;
-    padding: 10px;
+    /* flex: 4 0 0; */
+    flex: 3 0 0;
+    /* background-color: orange; */
+    justify-content: center;
+    align-items: center;
+    /* margin: 3px;
+    padding: 10px; */
+    /* justify-content: flex-end; */
+    align-items: flex-end;
 }
 .smallSection {
     display: flex;
     /* etc number 자식클래스를 위해 부모박스 요소에서 명시 */
     flex-direction: column;
-    flex: 3 0 0;
+    /* flex: 3 0 0; */
     /* grow shrink basis . shrink 를 1로 해도 결과 값음  */
-    background-color: yellow;
-    margin: 3px;
-    padding: 10px;
+    /* background-color: yellow; */
+    /* margin: 3px;
+    padding: 10px; */
 }
 .etc {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1 0 0;
-    background-color: green;
-    margin: 3px;
-    padding: 10px;
+    font-family: 'Radio Canada', sans-serif;
+    /* flex: 1 0 0; */
+    /* background-color: green; */
+    /* margin: 3px;
+    padding: 10px; */
 }
+
+.etc > button {
+    background-color: #696969;
+}
+
 .number {
     display: flex;
     flex-direction: column;
-    flex: 4 0 0;
+    /* flex: 4 0 0; */
     justify-content: center;
     align-items: center;
-    background-color: green;
+    /* background-color: green; */
     /* width: 100%; */
-    margin: 3px;
-    padding: 10px;
+    /* margin: 3px;
+    padding: 10px; */
+}
+
+.number > div > button {
+    background-color: #9f9f9f;
 }
 
 .operator {
     display: flex;
     flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    font-family: 'Radio Canada', sans-serif;
+    /* flex: 1 0 0; */
+    /* background-color: red; */
+    /* margin: 3px;
+    padding: 10px; */
+}
+.operator > button {
+    background-color: orange;
+}
+.button {
+    all: unset;
+    display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1 0 0;
-    background-color: red;
-    margin: 3px;
-    padding: 10px;
+    width: 82px;
+    height: 80px;
+    /* margin: 3px; */
+    margin: 0.5px;
 }
+.button:hover{
+    font-size: xx-large;
+    transition: 0.3s;
 
-.button {
-    width: 50px;
-    height: 50px;
-    margin: 3px;
 }
-.line4 {
+.equal {
+    border-radius: 0 0 15px 0;
+}
+.line {
     display: flex;
+    width: 100%;
 }
 .zero {
-    /* flex: 2 0 0; */
-    flex: 2 1 auto; 
+    flex: 2 0 0;
+    /* flex: 2 1 auto;  */
     /* hmm... flex 가 모두 작동하지 않아서 영버튼 두칸 차지 안한다.  */
+    border-radius: 0 0 0 15px;
 }
 .decimal {
     /* flex: 1 0 0; */
-    /* flex: 0 0 50px; */
-    flex: 1 1 auto;
+    flex: 0 0 82px;
+    /* flex: 1 1 auto; */
 }
