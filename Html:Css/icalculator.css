@@ -62,17 +62,19 @@ button {
     background-color: black;
 }
 .container {
-    /* flex: 3 0 0; */
+    /* flex: 3 0 0; flex-basis 로 적용을 위해 삭제*/ 
     flex-basis: 65%;
     display: flex;
 }
 .clearAndNumberPanel {
-    flex: 3 0 0;
+    flex: 3 0 0; 
+    /* row 3칸 for ac741 +-852 %963 */
     display: flex;
     flex-direction: column;
 }
 .clearPanel {
     flex: 1 0 0;
+    /* column 1칸 for ac +- %  */
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -80,25 +82,26 @@ button {
     align-items: center;
 }
 .clearPanel > button {
-    /* flex: 3 0 0; */
     background-color: darkgray;
 }
 
 .numberPanel {
     flex: 4 0 0;
+    /* column 4칸 for ac +- %  */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    display: flex;
 }
 .numberPanel > div > button {
     flex: 3 0 0;
+    /* 흠.. 왜 flex 를 넣어도 지워도 똑같지 */
     background-color: gray;
 }
 
 .allOperatorPanel {
     flex: 1 0 0;
+    /* row 1칸 for operator */
 }
 
 .allOperatorPanel > button {
