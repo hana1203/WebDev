@@ -87,3 +87,10 @@ triangle.draw();
 //drawing red color  -> super.draw()로 부모클래스에서 정의한 것
 //🔺  -> 오버라이딩해서 Triangle 클래스에서 재정의한 것
 console.log(triangle.getArea()); //200
+
+//Class checking : instanceOf
+//클래스의 인스턴스가 맞으면 true 아니면 false 반환 
+console.log(rectangle instanceof Rectangle); //t
+console.log(triangle instanceof Rectangle); //f 
+console.log(triangle instanceof Shape); //t
+console.log(triangle instanceof Object); //t
