@@ -41,3 +41,49 @@ console.log(user1.age); //14
 user1.firstName = "moanka";
 console.log(user1); 
 //User { firstName: 'moanka', lastName: 'Jobs', privateAge: 14 }
+
+//java에서는 클래스안에 private으로 변수를 먼저 선언하고 생성자 만들고 get변수() set변수() 메서드를 정의해두었다. 
+//실행클래스에서 인스턴스.get변수() 로 변수값 가져오고 인스턴스.set변수(인자) 를 썼는데 ... 
+//js에서는..? hmm... get set 을 클래스안에 정의하면 생성자에서 생성한 초기 변수값을 바꿔주는것인가? 
+//get set을 메서드로는 사용하지 못하는건가...? user1.getage() 처럼
+//이럴거면 무슨 필요로 get set 쓰는것?
+//실험해본 바로는 age 를 다시 재할당할때도 .age = 14 쓰는데 get set 정의안된 firstName 변수도 다시 재할당 가능.. 
+
+
+//Inheritance
+class Shape {
+    constructor(width, height, color) {
+        this.width = width;
+        this.height =height;
+        this.color = color;
+    }
+    draw() {
+        console.log(`drawing ${this.color} color`)
+    }
+    getArea() {
+        return this.width * this.height;
+    }
+}
+
+class Rectangle extends Shape {}
+class Triangle extends Shape {
+    //Overriding
+    draw() {
+        super.draw();
+        //공통적으로 정의해둔 draw()도 부모클래스거 가져오려고
+        console.log("🔺");
+    }
+    getArea() {
+        return (this.width * this.height)/2;
+    }
+
+}
+const rectangle = new Rectangle(20, 20, "blue");
+rectangle.draw(); //drawing blue color
+console.log(rectangle.getArea()); //400
+
+const triangle = new Triangle(20, 20, "red");
+triangle.draw(); 
+//drawing red color  -> super.draw()로 부모클래스에서 정의한 것
+//🔺  -> 오버라이딩해서 Triangle 클래스에서 재정의한 것
+console.log(triangle.getArea()); //200
