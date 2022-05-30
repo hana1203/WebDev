@@ -16,7 +16,7 @@ class UserStorage {
     }
     //사용자가 역할을 받아올때 1초뒤에 이 코드가 실행 
     getRoles(user) {
-        return new Promise((resolve, reject => {
+        return new Promise((resolve, reject) => {
             setTimeout(()=> {
                 if (user === 'ron') {
                     resolve({name: "ron", role: "admin"});
@@ -37,10 +37,10 @@ const userStorage = new UserStorage();
 const id = prompt('enter your id');
 const password = prompt('enter your password');
 
-userStorage.loginUser(id, password)
-.then(user => userStorage.getRoles)
-.then(user => alert(`Hello ${user.name}, you have ${user.role} role.`))
-.catch(console.log);
+userStorage.loginUser(id, password) //userStorage의 loginUser 호출해서 id, password 전달
+.then(user => userStorage.getRoles(user)) //이게 잘되면? getRoles 호출해서 유저 받아오기 
+.then(user => alert(`Hello ${user.name}, you have ${user.role} role.`)) //사용자의 역할을 잘 받아온다면? 
+.catch(console.log); //만약 문제가생기면 간단하게 콘솔로그 출력
 
 // userStorage.loginUser(
 //     id, 
