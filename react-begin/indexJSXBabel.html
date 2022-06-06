@@ -17,7 +17,8 @@
     // Transforming codes to JSX using Babel 
 
         const root = document.getElementById("root");
-        //Title Button 컴포넌트 function으로 만들기
+
+        // Title, Button 컴포넌트 function으로 만들기
         function Title () {
             return (<h3 id="title" onMouseEnter= {() => console.log("mouse entered")}>Hello I'm a title</h3>);
         }
@@ -25,15 +26,20 @@
         const Button = () =>
          (<button style={{backgroundColor: "tomato"}} onClick={() => console.log("clicked")}>Click me</button>); 
 
-        //createElement 말고 JSX 이용해서 바꾸기 
+        // createElement 말고 JSX 이용해서 바꾸기 
         // const container = React.createElement("div", null, [Title, Button]);
-        //Title, Button 가져오려면? 먼저 Title, BUtton을 function으로 만듬
-        //마치 일반적인 html태그인것 처럼 포함시키기
-        const Container = () => <div><Title /><Button /></div>
-        //직접 만든 컴포넌트의 첫글자는 반드시 대문자로!
-        //소문자이면 React와 JSX는 html 태그로 인식
+        // Title, Button 가져오려면? 먼저 Title, BUtton을 function으로 만듬
+        // 마치 일반적인 html태그인것 처럼 포함시키기
+        const Container = () => (
+            <div><Title />
+                <Button />
+                <Button />
+            </div>
+            );
+        // 직접 만든 컴포넌트의 첫글자는 반드시 대문자로!
+        // 소문자이면 React와 JSX는 html 태그로 인식
 
         ReactDOM.render(<Container />, root);
-
+        
     </script>
 </html>
