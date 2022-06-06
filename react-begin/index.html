@@ -1,0 +1,72 @@
+<!-- 리액트의 본질 이해하기 -->
+<!DOCTYPE html>
+<html> 
+    <body>
+        <div id="root"></div>
+        <!-- ReactDOM으로 js요소를 body안에 두기위해서 div를 만들고 id로 지정 -->
+    </body>
+    <!-- react, react-dom을 import한다 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <!-- React JS는 앱이 interactiv 하게 만들어주는 라이브러리 -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- React-dom은 모든 React element 들을 HTML body에 넣어주는 라이브러리 -->
+    
+    <!-- React JS 요소 만들기 -->
+    <script>
+        //finding root. normal JS처럼 ID로 찾기 
+        const root = document.getElementById("root");
+        const span = React.createElement(
+            "span", //() 안 첫번째 인자는 생성하고자 하는 html 태그이름하고 똑같아야 함 
+            // {id: "my-span", style: {color: "green"}},  //createElement() 두번째 인자로 property넣을 수 있다. property can be class name, id.
+            {onMouseEnter: () => console.log("mouse entered")},
+            "I am a span!") //content
+        
+        // const button = React.createElement("button", null, "Click") //property 필요없으면 null로 두기
+
+        //버튼만들고 버튼에서 일어나는 event를 어떻게 감지하는지 알아보기
+        const button = React.createElement(
+            "button", 
+            {
+            onClick: () => console.log("clicked"), //button이 클리될때마다 호출될 function 작성 
+            //event적는 방식?
+            //바닐라 JS에서는 "click" 이지만 React JS에서는 on붙이고 씀
+            //React JS에게 우리가 이벤트 리스너를 생성한다고 알려주는 것 
+            style: {
+                backgroundColor: "tomato"
+            }
+            },  
+            "Click"
+        );
+        //우리가 해야될 미션? 버튼 가져와서 event동작감지하는 기능넣기 
+        //vanila에선 addEventListener 더하고 listner function 만들었다.
+        //리액트에서는 button에 property 주면 된다. 
+        //property는 id, classname, style 줄 수도 있지만 eventlistener 줄 수도 있다.
+        //property에 event listener 등록 register 가능 
+
+        
+        ReactDOM.render(span, root); //ReactDOM한테 span을 어디에 둘건지 알려주기 얜 아직 어디다 둘지 모른다.
+        //span을 root안에다 렌더해줘
+        //render? React element를 가져와서 html로 만들어 넣는다. 사용자한테 보여준다.
+        ReactDOM.render(button, root);
+        //rendering button inside of the root
+
+        //span, button 두가지 모두 렌더링하고 싶으면?
+        //div 만들어서 span 이랑 button을 배열로 담는다 
+        //2 component 가지는 component를 생성하 것 
+        const container = React.createElement("div", null, [span, button]);
+        ReactDOM.render(container, root);
+
+    </script>
+</html>
+
+<!-- 
+    ReactJS에서는 모든것이 Javascript로 시작하고 그 다음에 HTML이 된다! 
+    리액트 JS가 결과물인 HTML을 업데이트 할 수 있다.
+    유저에게 보여질 내용을 컨트롤할 수 있다.
+    html만들어서 찾아서 가져오고 업데이트할 필요없이 리액트JS에게 업뎃해야되는 html을 업데이트하라고 하기
+
+    React 팀은 알고있다.
+    interactive한 어플리케이션에서 하는 작업 모두가 event를 감지하는 일이라는 걸 listen for events
+    addEventListener 반복하는 대신에 property에서 event를 등록할 수 있게된 것!! 
+
+--> 
