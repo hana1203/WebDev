@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html> 
+    <body>
+        <div id="root"></div>
+    </body>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+    // Transforming codes to JSX using Babel
+    
+    //Unit Converter Minutes - Hours
+    function App() {
+        const [minutes, setMinutes] = React.useState(0)
+        //step1. state만들고 value를 input에게 준다.
+        //첫번째요소는 데이터, 두번째요소는 데이터 수정하기위한 함수
+        const onChange = (event) => {
+            setMinutes(event.target.value);
+            //event 찍어보면? -> SyntheticBaseEvent 합성이벤트
+            //nativeEvent에 진짜 event 접근 가능
+            //target도 있다. target? 방금 바뀐 input.
+            //event.target -> <input id="minutes" placeholder="Minutes" type="number" value>
+        }
+        //입력값을 알아야한다. 입력값을 변환하려면 입력값 자체가 필요하다
+
+        const reset = () => {
+            setMinutes(0);
+        }
+        const onFlipped = () => {
+            //새로운 state를 조작할것. 지금은 minutes 하나의 state만 있는데 한개더 만든다.
+
+        }
+
+        return (
+            <div>
+                <h1>Converter</h1>
+                <div>
+                <label htmlFor="minutes">Minutes</label>
+                <input 
+                    value={minutes} 
+                    //step2. input의 value를 state로 연결해준다.
+                    //외부에서도 input값 수정해주려고 input의 value를 연결해준다.
+                    //state로 minutes이라는 값 가지고있는데 그 값을 input의 value로 넣어준다.
+                    //그럼 input값은 state값과 같아진다. 
+                    id="minutes" 
+                    placeholder="Minutes" 
+                    type="number"
+                    onChange={onChange}
+                    //step3. onChange function만들기 -데이터 업데이트 해주는 역할
+                    //사용자가 input에 새로운값을 입력할때마다 state를 업데이트하고 싶으면?
+                    //change 이벤트 사용
+                    //input 에 변화가생기면 onChange 함수를 실행
+                    //삭제하면 input에 아무것도 쓸수없음
+                    //이벤트 들어주는것 하나, 이벤트 발생시 값 업데이트해주고 UI에 보여주는것 하나 필요 
+                />
+                </div>
+                <h4>You want to convert {minutes}</h4> 
+                // input의 값을 바탕으로 컴포넌트를 업데이트해줌
+
+                <div>
+                <label htmlFor="hours">Hours</label> 
+                <input value={minutes/60} id="hours" placeholder="Hours" type="number" disabled/>
+                // hours input은 eventlistner인 onChange 이벤트없기때문에 아무것도 할수없음  
+                </div>
+
+                <button onClick={reset}>Reset</button>
+                //reset onClick=function없으니까 위에다 만들기
+                <button onClick={onFlipped}>Flip</button>
+
+                //버튼만들기. 분입력시엔 시가 disabled되고 시 입력시엔 분이 disabled되는 것으로
+            </div>
+        );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);    
+    </script>
+</html>   
+
+<!-- 
+label tag는 input옆에 쓰는 텍스트 
+label을 input에 연결해주려면 input에 일단 id 있어야함
+그리고나서 html은 for 속성을 이용해서 연결
+ReactJS에서 for적으면 invalid DOM property 에러
+for은 자바스크립트 용어여서 이미 reserved. JSX에선 못쓴다
+
+ReactJS세계에서 input 은 uncontrolled 알려져있다. input value는 통제할수없다.
+그래서 state를 만든다. 
+
+-->
