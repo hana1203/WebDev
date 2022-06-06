@@ -1,0 +1,39 @@
+<!-- JSX를 사용해서 컴포넌트 만들기  -->
+<!-- JSX? JavaScript를 확장한 문법 HTML이랑 비슷 -->
+<!-- 브라우저는 JSX를 완전히 이해하지못해서 바벨없이는 token error가 난다.  -->
+
+<!DOCTYPE html>
+<html> 
+    <body>
+        <div id="root"></div>
+    </body>
+    <!-- react, react-dom을 import한다 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <!-- React JS는 앱이 interactiv 하게 만들어주는 라이브러리 -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- React-dom은 모든 React element 들을 HTML body에 넣어주는 라이브러리 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+    // Transforming codes to JSX using Babel 
+
+        const root = document.getElementById("root");
+        //Title Button 컴포넌트 function으로 만들기
+        function Title () {
+            return (<h3 id="title" onMouseEnter= {() => console.log("mouse entered")}>Hello I'm a title</h3>);
+        }
+        
+        const Button = () =>
+         (<button style={{backgroundColor: "tomato"}} onClick={() => console.log("clicked")}>Click me</button>); 
+
+        //createElement 말고 JSX 이용해서 바꾸기 
+        // const container = React.createElement("div", null, [Title, Button]);
+        //Title, Button 가져오려면? 먼저 Title, BUtton을 function으로 만듬
+        //마치 일반적인 html태그인것 처럼 포함시키기
+        const Container = () => <div><Title /><Button /></div>
+        //직접 만든 컴포넌트의 첫글자는 반드시 대문자로!
+        //소문자이면 React와 JSX는 html 태그로 인식
+
+        ReactDOM.render(<Container />, root);
+
+    </script>
+</html>
