@@ -22,14 +22,22 @@
             //event.target -> <input id="minutes" placeholder="Minutes" type="number" value>
         }
         //입력값을 알아야한다. 입력값을 변환하려면 입력값 자체가 필요하다
+        //onChange함수는 사용자가 input에 입력한 값을 state에 전달한다.
 
         const reset = () => {
             setMinutes(0);
         }
-        const onFlipped = () => {
-            //새로운 state를 조작할것. 지금은 minutes 하나의 state만 있는데 한개더 만든다.
 
+        //컴포넌트에 새로운 state를 조작할것. 지금은 minutes 하나의 state만 있는데 한개더 만든다.
+        //flipped 은 단순히 true/false 값 가지고있는 변수
+        const [flipped, setFlipped] = React.useState(false);
+        const onFlip = () => {
+            reset(); //flip버튼 누르면 0으로 먼저 바뀌기 
+            setFlipped((current) => !current);
         }
+        //flip 버튼누르면 onFlip함수 실행. 현재값받아서 반댓값을 리턴. 
+        //이러한 state를 갖고있는데 input을 disabled / enabled 할건지 결정할수있다.
+        //flipped 상태에따라서 input을 disabled / enabled 로 바꿔줄수 있다.
 
         return (
             <div>
@@ -37,11 +45,13 @@
                 <div>
                 <label htmlFor="minutes">Minutes</label>
                 <input 
-                    value={minutes} 
+                    //value={minutes}
                     //step2. input의 value를 state로 연결해준다.
                     //외부에서도 input값 수정해주려고 input의 value를 연결해준다.
                     //state로 minutes이라는 값 가지고있는데 그 값을 input의 value로 넣어준다.
                     //그럼 input값은 state값과 같아진다. 
+
+                    value={flipped? minutes*60: minutes} //flipped이면 시를 분으로 바꾸기
                     id="minutes" 
                     placeholder="Minutes" 
                     type="number"
@@ -50,24 +60,37 @@
                     //사용자가 input에 새로운값을 입력할때마다 state를 업데이트하고 싶으면?
                     //change 이벤트 사용
                     //input 에 변화가생기면 onChange 함수를 실행
-                    //삭제하면 input에 아무것도 쓸수없음
+                    //onChange 안넣으면 input에 아무것도 쓸수없음
                     //이벤트 들어주는것 하나, 이벤트 발생시 값 업데이트해주고 UI에 보여주는것 하나 필요 
+                    disabled = {flipped === true}
                 />
                 </div>
                 <h4>You want to convert {minutes}</h4> 
-                // input의 값을 바탕으로 컴포넌트를 업데이트해줌
+                {/*input의 값을 바탕으로 컴포넌트를 업데이트해줌*/}
 
                 <div>
                 <label htmlFor="hours">Hours</label> 
-                <input value={minutes/60} id="hours" placeholder="Hours" type="number" disabled/>
-                // hours input은 eventlistner인 onChange 이벤트없기때문에 아무것도 할수없음  
+                <input 
+                    // value={minutes/60} //시간으로의 conversion은 minutes에서 썼을때만 발생해야됨
+                    value = {flipped? minutes : minutes/60}
+                    //flipped가 true일때, 현재값만 보여주기. state에 있는 값 그대로 보여주기. 
+                    id="hours" 
+                    placeholder="Hours" 
+                    type="number" 
+                    // disabled={true}
+                    disabled = {flipped === false}   
+                    onChange={onChange}                 
+                />
+                {/* hours input은 eventlistner인 onChange 이벤트없기때문에 아무것도 할수없음*/} 
                 </div>
 
                 <button onClick={reset}>Reset</button>
-                //reset onClick=function없으니까 위에다 만들기
-                <button onClick={onFlipped}>Flip</button>
+                {/*reset onClick=function없으니까 위에다 만들기*/}
 
-                //버튼만들기. 분입력시엔 시가 disabled되고 시 입력시엔 분이 disabled되는 것으로
+                {/*<button onClick={onFlip}>Flip</button>*/}
+                {/*버튼만들기. 분입력시엔 시가 disabled되고 시 입력시엔 분이 disabled되는 것으로*/}
+                <button onClick={onFlip}>{flipped? "Turn back": "Flip"}</button>
+                {/*버튼에 Flip인지아닌지 다른 글씨로 보여주기*/}
             </div>
         );
     }
