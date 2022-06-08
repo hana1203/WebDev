@@ -1,36 +1,41 @@
 <!DOCTYPE html>
-<html> 
-    <body>
-        <div id="root"></div>
-    </body>
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="text/babel">
-
-    //컴포넌트는 JSX 반환하는 함수 
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    //컴포넌트는 JSX 반환하는 함수
     //버튼 만들기
 
     //리액트의 모든 컴포넌트들은 () 괄호로 인자를 받는다. 첫번째 인자는 props
     //props는 App()에서 호출하는 Btn함수를 갖는 오브젝트
-    function Btn({text, big}) { 
-        //이 방법을 더 많이사용. property를 object에서 꺼내는것. props는 오브젝트로 text를 키값으로 가지고있어서 바로 사용가능 
-        //function Btn(props) 
-        // console.log(props)
-        return (
-            <button
-             style={{
-                 backgroundColor: "tomato",
-                 color: "white", 
-                 padding: "10px 20px",
-                 borderRadius: 10,
-                 border: 0,
-                 fontSize: big? 20: 16,
-                }}
-            > 
-            {text}
-            {/*{props.text}*/}
-            </button>);
+    function Btn({ text, changeValue }) {
+      //prop을 자식컴포넌트에서 넣어야지 부모컴포넌트에서 전달한 prop이 작동
+      //이 방법을 더 많이사용. property를 object에서 꺼내는것. props는 오브젝트로 text를 키값으로 가지고있어서 바로 사용가능
+      // function Btn(props)
+      // console.log(props)
+
+      //버튼이 언제 렌더링되는지 확인하기
+      console.log(text, "rendered");
+      return (
+        <button
+          onClick={changeValue} //html에서 써주는 애가 이벤트 리스너. onClick 이벤트리스너
+          //prop을 너가 원하는곳에 직접 넣어야한다.
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            borderRadius: 10,
+            border: 0,
+          }}
+        >
+          {text}
+          {/*{props.text}*/}
+        </button>
+      );
     }
 
     // function ConfirmBtn() {
@@ -43,26 +48,45 @@
     //              borderRadius: 10,
     //              border: 0
     //             }}
-    //         > 
+    //         >
     //         Confirm
     //         </button>);
     // }  //버튼마다 복붙해줘야했음
 
+    //React에 이런 기능도있다. Memo
+    //컴포넌트가 다시 그려질때 우리가 컨트롤 할수있다.
+    //React 규칙에따라 state가 바뀌면 컴포넌트는 리렌더링된다
+    //부모한테 어떤 state라도 변경이 있으면 모든 자식들은 리렌더링된다. 앱이 느려지는 원인 될수있음
+    const MemorizedBtn = React.memo(Btn);
+
     function App() {
-        return (
-            <div>
-                {/*어떤 prop이든 Btn컴포넌트에 보내면 Btn함수의 첫번째 인자로 들어간다
+      //onClick function이 App컴포넌트의 state를 바꿀것으로 state만든다.
+      const [value, setValue] = React.useState("Save Changes"); //버튼의 텍스트를 state에 연결하기
+      //changeValue라는 function만들기 -부모의 상태를 바꾸는 함수
+      const changeValue = () => setValue("Revert Changes");
+      return (
+        <div>
+          {/*어떤 prop이든 Btn컴포넌트에 보내면 Btn함수의 첫번째 인자로 들어간다
                    Btn({text: "Save Changes"})*/}
-                <Btn text="Save Changes" big={true}/>
-                <Btn text="Continue" /> 
-                {/*단지 함수를 호출하는것. 함수형 컴포넌트*/}
-            </div>
-        )
+          {/*단지 함수를 호출하는것. 함수형 컴포넌트*/}
+          {/*Btn에 onClick 펑션 추가하기 */}
+          {/*<Btn text="Save Changes"/>*/}
+          <MemorizedBtn text={value} changeValue={changeValue} />
+          {/*여기서의 onClick은 실제 이벤트리스너가 아니고 버튼으로 전달하는 props이다. 이해를 위해 changeValue로 prop이름 바꿈 
+                text, boolean, function 뭐든 prop으로 넣을수 있다 
+                주의! prop을 넣는다고해서 자동으로 자식컴포넌트 Btn에 return 안으로 들어가지 않는다.*/}
+          <MemorizedBtn text="Continue" />
+
+          {/*Continue는 계속 렌더링될 필요가없고 고정이니까 props가 바뀌지않으면 렌더링안해주게 하기
+           Tell React to stop rerendering continue button if the props don't change.
+        */}
+        </div>
+      );
     }
     const root = document.getElementById("root");
-    ReactDOM.render(<App />, root);    
-    </script>
-</html>   
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
 
 <!-- 
 props? 
