@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function MinutesToHours() {
+      const [minutes, setMinutes] = React.useState(0);
+
+      const onChange = (event) => {
+        setMinutes(event.target.value);
+      };
+
+      const reset = () => {
+        setMinutes(0);
+      };
+
+      const [flipped, setFlipped] = React.useState(false);
+      const onFlip = () => {
+        reset(); //flip버튼 누르면 0으로 먼저 바뀌기
+        setFlipped((current) => !current);
+      };
+
+      return (
+        <div>
+          <h1>Minutes to MinutesToHours</h1>
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              value={flipped ? minutes * 60 : minutes} //flipped이면 시를 분으로 바꾸기
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={onChange}
+              disabled={flipped === true}
+            />
+          </div>
+          <h4>You want to convert {minutes}</h4>
+
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input
+              // value={minutes/60} //시간으로의 conversion은 minutes에서 썼을때만 발생해야됨
+              value={flipped ? minutes : minutes / 60}
+              //flipped가 true일때, 현재값만 보여주기. state에 있는 값 그대로 보여주기.
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              // disabled={true}
+              disabled={flipped === false}
+              onChange={onChange}
+            />
+          </div>
+
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>{flipped ? "Turn back" : "Flip"}</button>
+        </div>
+      );
+    }
+
+    function KmToMiles() {
+      const [unit, setUnit] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false);
+
+      const onChange = (event) => {
+        setUnit(event.target.value);
+      };
+
+      const reset = () => {
+        setUnit(0);
+      };
+
+      const onFlip = () => {
+        reset(); //flip버튼 누르면 0으로 먼저 바뀌기
+        setFlipped((current) => !current);
+      };
+
+      return (
+        <div>
+          <h1>Km to Miles</h1>
+          <div>
+            <label htmlFor="km">Km</label>
+            <input
+              value={flipped ? unit * 1.60934 : unit}
+              //초기값은 flipped가 false인 상태. flipped되면? miles에서 Km로.
+              id="km"
+              placeholder="km"
+              type="number"
+              onChange={onChange}
+              disabled={flipped === true}
+            />
+          </div>
+          <h4>You want to convert {unit}</h4>
+
+          <div>
+            <label htmlFor="miles">Miles</label>
+            <input
+              value={flipped ? unit : unit * 0.621371}
+              //flipped가 true일때, 현재값만 보여주기. state에 있는 값 그대로 보여주기.
+              id="miles"
+              placeholder="miles"
+              type="number"
+              // disabled={true}
+              disabled={flipped === false}
+              onChange={onChange}
+            />
+          </div>
+
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>{flipped ? "Turn back" : "Flip"}</button>
+        </div>
+      );
+    }
+
+    //Converter 고를수 있게 하기
+    function App() {
+      //App component가 상태를 가지게하기. 어떤 컨버터를 보고싶은지?
+      const [index, setIndex] = React.useState("initial"); //()비어있으면 처음화면은 초기값 없음
+      const onSelect = (event) => {
+        // console.log(event); //SyntheticBaseEvent {...nativeEvent: Event, target: select, …}
+        setIndex(event.target.value);
+      };
+      return (
+        <div>
+          <h1>My Converter</h1>
+          <select onChange={onSelect}>
+            <option value="initial">CHOOSE</option>
+            <option value="0">Minutes & Hours</option>
+            <option value="1">KM & Miles</option>
+          </select>
+          {index === "initial" ? "Hi, you can choose a converter." : null}
+          {index === "0" ? <MinutesToHours /> : null}
+          {index === "1" ? <KmToMiles /> : null}
+        </div>
+      );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
