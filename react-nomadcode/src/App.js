@@ -5,7 +5,8 @@
 
 import Button from "./Button";
 import { useState, useEffect } from "react";
-//useEffect 1st argument: 딱 한번만 실행시키고 싶은 코드
+//useEffect 1st argument: 실행시키고 싶은 코드
+//2nd argument: dependencies. 리액트가 지켜봐야되는 것. 그게 변화할때 코드를 실행
 
 function App() {
   const [counter, setValue] = useState(0);
@@ -22,6 +23,7 @@ function App() {
     console.log("I run only once.");
   };
   useEffect(runOnce, []); //useEffect가 컴포넌트의 맨 처음 렌더시점에 함수를 호출
+  //no dependencies. 리액트가 지켜볼 대상없기때문에 코드는 한번만 실행
 
   useEffect(() => {
     console.log("Call the API");
@@ -30,7 +32,9 @@ function App() {
 
   // console.log("search for", keyword); //상태변화할때마다 실행되는 코드
   //input 요소 keyword상태 변화할때만 실행했으면 좋겠는데, counter버튼 누를때도 실행된다.
+
   //The magic of useEffect
+  //두번째 인자 dependencies 사용
   //keyword 상태 변화할때만 코드 실행하게하기
   useEffect(() => {
     //초기에 컴포넌트가 시작될때도 동작됨. input에 유저가 search를 시작할때만
