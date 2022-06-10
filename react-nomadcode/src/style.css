@@ -1,0 +1,5 @@
+/* css파일적용하면 모든 버튼색깔을 바꿔버린다 */
+button {
+  color: white;
+  background-color: tomato;
+}
