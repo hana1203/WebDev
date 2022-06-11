@@ -16,12 +16,14 @@ function App() {
   // console.log("rendered"); //상태가 변할때마다 렌더링된다
   // console.log("call an API");
   const onChange = (event) => setKeyword(event.target.value);
-  console.log("I run all the time"); //상태변화할때마다 실행되는 코드
 
   //컴포넌트가 맨처음 렌더될때만 코드 실행되고 그 다음엔 절대 실행되지 않게하기
   const runOnce = () => {
     console.log("I run only once.");
   };
+
+  console.log("I run all the time"); //상태변화할때마다 실행되는 코드
+
   useEffect(runOnce, []); //useEffect가 컴포넌트의 맨 처음 렌더시점에 함수를 호출
   //no dependencies. 리액트가 지켜볼 대상없기때문에 코드는 한번만 실행
 
