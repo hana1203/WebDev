@@ -3,7 +3,21 @@
 //전역변수로 만들면 누구나 접근할수있으니까 위험해서 익명 함수 안에다가 만듬
 //함수자체는 실행을 해야 호출되니까 괄호까지 붙여서 호출완료
 
+/* data-index 2인 경우에 나오는 새가 위로 날라가게 하기 */
 (() => {
+  const actions = {
+    birdFlies(isTrue) {
+      if (isTrue) {
+        document.querySelector(
+          '[data-index="2"] .bird' //부모가 data-index="2"인 graphic-item 의 자식요소 bird클래스
+        ).style.transform = `translateX(${window.innerWidth}px)`;
+        //x방향으로 윈도우 폭만큼 날라감
+      } else {
+        document.querySelector().style.transform = `translateX(-100%)`; //css에서 default로 잡아둔 값
+      }
+    },
+  };
+
   const stepElems = document.querySelectorAll(".step");
   const graphicElems = document.querySelectorAll(".graphic-item");
   let currentItem = graphicElems[0]; //맨 처음 이미지 저장해두기
@@ -13,12 +27,27 @@
     graphicElems[i].setAttribute("data-index", i);
     // graphicElems[i].dataset.index = i //same
   }
-  function activate() {
+  // function activate() {
+  //   currentItem.classList.add("visible");
+  // }
+
+  //action이 들어오면 action실행되도록 매개변수줌
+  function activate(action) {
     currentItem.classList.add("visible");
+    if (action) {
+      actions[action](true); //actions객체의 메서드 부름
+    }
   }
 
-  function inactivate() {
+  // function inactivate() {
+  //   currentItem.classList.remove("visible");
+  // }
+
+  function inactivate(action) {
     currentItem.classList.remove("visible");
+    if (action) {
+      actions[action](false);
+    }
   }
 
   //scroll이벤트가 발생할때 실행되는 이벤트핸들러 함수
@@ -46,9 +75,10 @@
         if (currentItem) {
           //currentItem존재하면
           inactivate();
+          currentItem = graphicElems[step.dataset.index];
+          // activate();
+          activate(currentItem.dataset.action);
         }
-        currentItem = graphicElems[step.dataset.index];
-        activate();
       }
     }
   });

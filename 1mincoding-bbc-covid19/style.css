@@ -68,3 +68,14 @@ img {
   background: rgba(255, 255, 255, 0.8);
   box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px;
 }
+/* data-index 2인 경우에 나오는 새가 위로 날라가게 하기 */
+.bird {
+  position: absolute;
+  left: 0;
+  bottom: 70%;
+  width: 10rem;
+  transform: translateX(-100%);
+  /* 처음에 새 안보이게 화면 바깥으로 자기크기만큼 삐져나감 */
+  transition: 1.5s 0.5s linear;
+  /* 애니메이션 넣기 0.5초후에 1.5초동안 날라가게  */
+}
