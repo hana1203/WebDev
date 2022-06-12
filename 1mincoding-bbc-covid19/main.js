@@ -13,7 +13,9 @@
         ).style.transform = `translateX(${window.innerWidth}px)`;
         //x방향으로 윈도우 폭만큼 날라감
       } else {
-        document.querySelector().style.transform = `translateX(-100%)`; //css에서 default로 잡아둔 값
+        document.querySelector(
+          '[data-index="2"] .bird'
+        ).style.transform = `translateX(-100%)`; //css에서 default로 잡아둔 값
       }
     },
   };
@@ -74,7 +76,7 @@
         // console.log(step.dataset.index); //스크롤할때마다 이미지 인덱스값 찍힘
         if (currentItem) {
           //currentItem존재하면
-          inactivate();
+          inactivate(currentItem.dataset.action);
           currentItem = graphicElems[step.dataset.index];
           // activate();
           activate(currentItem.dataset.action);
