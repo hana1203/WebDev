@@ -5,8 +5,8 @@ function App2() {
   const [coins, setCoins] = useState([]);
 
   const [currentCoin, setCurrentCoin] = useState([]);
-  let splitCost = currentCoin.split("$");
-  const currentCoinCost = splitCost[1];
+  // let splitCost = currentCoin.split("$");
+  // const currentCoinCost = splitCost[1];
   const [dollars, setDollars] = useState();
 
   const onChange = (event) => {
@@ -16,11 +16,12 @@ function App2() {
   const saveCurrentCoin = (event) => {
     setCurrentCoin(event.target.value);
   };
+  console.log(currentCoin);
   // console.log(currentCoin.split("$")[1]);
 
   //컴포넌트가 초기에 처음으로 렌더될때 API 가져오는 함수를 실행시키기
   useEffect(() => {
-    fetch("https://api.coinpaprika.com/v1/tickers")
+    fetch("https://api.coinpaprika.com/v1/tickers?limit=10 ")
       .then((response) => response.json())
       .then((json) => {
         setCoins(json); //coin state변경
@@ -61,7 +62,7 @@ function App2() {
         <input placeholder={coin.name}></input>
       ))} */}
       <input
-        value={dollars / currentCoinCost}
+        // value={dollars / currentCoinCost}
         placeholder={currentCoin}
         disabled
       ></input>
