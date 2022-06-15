@@ -4,9 +4,8 @@ function App2() {
   const [loading, setLoading] = useState(true);
   const [coins, setCoins] = useState([]);
 
-  const [currentCoin, setCurrentCoin] = useState([]);
-  // let splitCost = currentCoin.split("$");
-  // const currentCoinCost = splitCost[1];
+  const [currentCoin, setCurrentCoin] = useState();
+
   const [dollars, setDollars] = useState();
 
   const onChange = (event) => {
@@ -31,12 +30,18 @@ function App2() {
   return (
     <div>
       <h1>The Coins ({coins.length})</h1>
+      <h2>Select a coin!</h2>
       {loading ? (
         <strong>Loading...</strong>
       ) : (
         <select onChange={saveCurrentCoin}>
+          <option>select a coin</option>
           {coins.map((coin) => (
-            <option>
+            <option
+              name={coin.name}
+              value={coin.quotes.USD.price}
+              symbol={coin.symbol}
+            >
               {coin.name} ({coin.symbol}): ${coin.quotes.USD.price}
             </option>
           ))}
@@ -62,7 +67,9 @@ function App2() {
         <input placeholder={coin.name}></input>
       ))} */}
       <input
-        // value={dollars / currentCoinCost}
+        // value={onChange() ? dollars / currentCoin : "w"}
+        // 뭔가 onChange발생하면? 참이면 환산된 값 띄우고 그게 아니라면 input 플레이스홀더에 원하는 값 띄우고 싶은데 처음엔 NaN나옴
+        value={dollars / currentCoin}
         placeholder={currentCoin}
         disabled
       ></input>
