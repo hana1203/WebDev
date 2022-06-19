@@ -16,7 +16,6 @@ function App2() {
     setCurrentCoin(event.target.value);
   };
   console.log(currentCoin);
-  // console.log(currentCoin.split("$")[1]);
 
   //컴포넌트가 초기에 처음으로 렌더될때 API 가져오는 함수를 실행시키기
   useEffect(() => {
@@ -69,8 +68,9 @@ function App2() {
       <input
         // value={onChange() ? dollars / currentCoin : "w"}
         // 뭔가 onChange발생하면? 참이면 환산된 값 띄우고 그게 아니라면 input 플레이스홀더에 원하는 값 띄우고 싶은데 처음엔 NaN나옴
-        value={dollars / currentCoin}
-        placeholder={currentCoin}
+        value={currentCoin > 0 ? dollars / currentCoin : currentCoin}
+        //이렇게하니 select하기 전에는 plceholder 스트링값 나오는데.. option을 선택하고 아직 USD 입력안했을때 NaN 뜬다.
+        placeholder={"number of coin"}
         disabled
       ></input>
     </div>
