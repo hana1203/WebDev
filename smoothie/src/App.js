@@ -1,21 +1,6 @@
 import "./App.css";
 import { useState } from "react";
 
-function Menu({ icon, name, storeMenu }) {
-  // const [currentMenu, setCurrentMenu] = useState();
-  // const onClick = (event) => {
-  //   setCurrentMenu(event.target.textContent);
-  // };
-  // console.log(currentMenu);
-
-  return (
-    <div onClick={storeMenu} className="menu">
-      <div>{icon}</div>
-      <div>{name} </div>
-    </div>
-  );
-}
-
 function Selected() {
   const [storedMenu, setStoredMenu] = useState();
   const storeMenu = (event) => {
@@ -32,62 +17,30 @@ function Selected() {
 }
 
 function App() {
+  const allIngredients = [
+    { icon: "🥬", name: "Kale" },
+    { icon: "🥕", name: "Carrot" },
+    { icon: "🥝", name: "Kiwi" },
+    { icon: "🍍", name: "Pineapple" },
+    { icon: "🫐", name: "Blueberry" },
+    { icon: "🍓", name: "Strawberry" },
+    { icon: "🍌", name: "Banana" },
+    { icon: "🍋", name: "Lemon" },
+    { icon: "🍊", name: "Orange" },
+  ];
   return (
     <div>
       <h1>Organic Smoothie Bar</h1>
       <h1>👩🏻‍🌾</h1>
       <h2>Customize Your Organic Smoothie</h2>
       <section className="menu_container">
-        <Menu icon="🥬" name="Kale"></Menu>
-        <Menu icon="🥕" name="Carrot"></Menu>
-        <Menu icon="🥝" name="Kiwi"></Menu>
-        <Menu icon="🍍" name="Pineapple"></Menu>
-        <Menu icon="🫐" name="Blueberry"></Menu>
-        <Menu icon="🍓" name="Strawberry"></Menu>
-        <Menu icon="🍌" name="Banana"></Menu>
-        <Menu icon="🍋" name="Lemon"></Menu>
-        <Menu icon="🍊" name="Orange"></Menu>
+        {allIngredients.map((ingre) => (
+          <div className="ingredient">
+            <div>{ingre.icon}</div>
+            <div>{ingre.name}</div>
+          </div>
+        ))}
       </section>
-      {/* html 다 가져올 필요없고 컴포넌트로 만들어서 넣기  */}
-      {/* <section className="menu_container">
-        <div className="menu">
-          <div>🥬</div>
-          <div>Kale</div>
-        </div>
-        <div className="menu">
-          <div>🥕</div>
-          <div>Carrot</div>
-        </div>
-        <div className="menu">
-          <div>🥝</div>
-          <div>Kiwi</div>
-        </div>
-        <div className="menu">
-          <div>🍍</div>
-          <div>Pineapple</div>
-        </div>
-        <div className="menu">
-          <div>🫐</div>
-          <div>Blueberry</div>
-        </div>
-        <div className="menu">
-          <div>🍓</div>
-          <div>Strawberry</div>
-        </div>
-        <div className="menu">
-          <div>🍌</div>
-          <div>Banana</div>
-        </div>
-        <div className="menu">
-          <div>🍋</div>
-          <div>Lemon</div>
-        </div>
-        <div className="menu">
-          <div>🍊</div>
-          <div>Orange</div>
-        </div>
-      </section> */}
-
       <section className="order_container">
         {/* <div className="selected">
           <div>Selected ingredients</div>
