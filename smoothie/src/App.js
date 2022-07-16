@@ -1,21 +1,6 @@
 import "./App.css";
 import { useState } from "react";
 
-function Selected() {
-  const [storedMenu, setStoredMenu] = useState();
-  const storeMenu = (event) => {
-    setStoredMenu(event.target.textContent);
-  };
-  console.log(storedMenu);
-  return (
-    <div className="selected">
-      <div className="selected_menu">selected menu</div>
-      <div className="selected_menu_icon">{storedMenu}</div>
-      <div className="selected_menu_name">{storedMenu}</div>
-    </div>
-  );
-}
-
 function App() {
   const allIngredients = [
     { icon: "🥬", name: "Kale" },
@@ -28,16 +13,30 @@ function App() {
     { icon: "🍋", name: "Lemon" },
     { icon: "🍊", name: "Orange" },
   ];
+  const [clickedMenu, setClickedMenu] = useState([]);
+  const click = (event, idx) => {
+    // setClickedMenu(event.target.textContent)
+    // // event.preventDefault();
+    //   console.log(clickedMenu)
+    let menu = [...clickedMenu];
+    menu[idx] = event.target.textContent
+    menu[idx] = event.target.textContent
+    menu[idx] = event.target.textContent
+    setClickedMenu(menu)
+  } 
+  console.log(clickedMenu)
+
+
   return (
     <div>
       <h1>Organic Smoothie Bar</h1>
       <h1>👩🏻‍🌾</h1>
-      <h2>Customize Your Organic Smoothie</h2>
+      <h2>Customize Your Smoothie</h2>
       <section className="menu_container">
-        {allIngredients.map((ingre) => (
-          <div className="ingredient">
-            <div>{ingre.icon}</div>
-            <div>{ingre.name}</div>
+        {allIngredients.map((ingre, idx) => (
+          <div className="ingredient" onClick={(event)=>click(event, idx)}>
+            <span onClick={(e)=>e.stopPropagation()}>{ingre.icon}</span>
+            <span onClick={(e)=>e.stopPropagation()}>{ingre.name}</span>
           </div>
         ))}
       </section>
@@ -49,8 +48,12 @@ function App() {
           <div className="selected_menu_name"></div>
         </div> */}
 
-        <div>Selected ingredients</div>
-        <Selected></Selected>
+        <h2>Selected ingredients</h2>
+        {/* <div>{clickedMenu}</div> */}
+        {clickedMenu.map((eachMenu, idx) => <div>{eachMenu}</div>)}
+        
+        {/* <div>{clickedMenu2}</div>
+        <div>{clickedMenu3}</div> */}
 
         <div className="order_detail">
           <div className="order_size">
