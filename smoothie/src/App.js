@@ -14,27 +14,31 @@ function App() {
     { icon: "🍊", name: "Orange" },
   ];
   const [clickedMenu, setClickedMenu] = useState([]);
-  const click = (event, idx) => {
+  const [count, setCount] = useState(0);
+  const click = (event) => {
     // setClickedMenu(event.target.textContent)
     // // event.preventDefault();
     //   console.log(clickedMenu)
-    let menu = [...clickedMenu];
-    menu[idx] = event.target.textContent
-    menu[idx] = event.target.textContent
-    menu[idx] = event.target.textContent
-    setClickedMenu(menu)
+    setCount(count+1);
+    //3개만 고를 수 있으니까 3개만 담기. 
+    if (count<=2) {
+      let menu = [...clickedMenu];
+      menu[count] = event.target.textContent
+      setClickedMenu(menu)      
+      // menu[0] = event.target.textContent
+      // menu[1] = event.target.textContent
+      //메뉴에 0,1 인덱스 줄때는 클릭할때 한꺼번에 세개 요소가 저장되더니.. count를 따로주니까 따로따로 잘 담긴다.
+    }
   } 
-  console.log(clickedMenu)
-
 
   return (
     <div>
       <h1>Organic Smoothie Bar</h1>
-      <h1>👩🏻‍🌾</h1>
+      <h1 id="imoticon">👩🏻‍🌾</h1>
       <h2>Customize Your Smoothie</h2>
       <section className="menu_container">
-        {allIngredients.map((ingre, idx) => (
-          <div className="ingredient" onClick={(event)=>click(event, idx)}>
+        {allIngredients.map((ingre) => (
+          <div className="ingredient" onClick={(event)=>click(event)}>
             <span onClick={(e)=>e.stopPropagation()}>{ingre.icon}</span>
             <span onClick={(e)=>e.stopPropagation()}>{ingre.name}</span>
           </div>
@@ -51,6 +55,8 @@ function App() {
         <h2>Selected ingredients</h2>
         {/* <div>{clickedMenu}</div> */}
         {clickedMenu.map((eachMenu, idx) => <div>{eachMenu}</div>)}
+        {/* {clickedMenu.slice(0,3).map((eachMenu, idx) => <div>{eachMenu}</div>)} */}
+        
         
         {/* <div>{clickedMenu2}</div>
         <div>{clickedMenu3}</div> */}
