@@ -44,42 +44,34 @@ function App() {
           </div>
         ))}
       </section>
+
+      <h2>Selected ingredients</h2>
       <section className="order_container">
-        {/* <div className="selected">
-          <div>Selected ingredients</div>
-          <div className="selected_menu"></div>
-          <div className="selected_menu_icon"></div>
-          <div className="selected_menu_name"></div>
-        </div> */}
-
-        <h2>Selected ingredients</h2>
-        {/* <div>{clickedMenu}</div> */}
-        {clickedMenu.map((eachMenu, idx) => <div>{eachMenu}</div>)}
-        {/* {clickedMenu.slice(0,3).map((eachMenu, idx) => <div>{eachMenu}</div>)} */}
-        
-        
-        {/* <div>{clickedMenu2}</div>
-        <div>{clickedMenu3}</div> */}
-
         <div className="order_detail">
-          <div className="order_size">
-            <span className="label">Size</span>
-            <input type="radio" value="small" /> small
-            <input type="radio" value="medium" /> medium
-            <input type="radio" value="large" /> large
+          <div className="order_menu">
+          {clickedMenu.map((eachMenu, idx) => <div className="selected_menu">{eachMenu}</div>)}
+          {/* {clickedMenu.slice(0,3).map((eachMenu, idx) => <div>{eachMenu}</div>)} */}
           </div>
-          <div className="order_sweet">
-            <span className="label">Sweet Level</span>
-            <input type="radio" value="0" /> 0%
-            <input type="radio" value="25" /> 25%
-            <input type="radio" value="50" /> 50%
-            <input type="radio" value="75" /> 75%
-            <input type="radio" value="100" /> 100%
-          </div>
-          <div className="order_quantity">
-            <span className="label">Quantitiy</span>
-            <input type="number"></input>
-            <button>Order</button>
+          <div className="order_selection">
+            <div className="order_size">
+              <span className="label">Size</span>
+              <input type="radio" value="small" /> small
+              <input type="radio" value="medium" /> medium
+              <input type="radio" value="large" /> large
+            </div>
+            <div className="order_sweet">
+              <span className="label">Sweet Level</span>
+              <input type="radio" value="0" /> 0%
+              <input type="radio" value="25" /> 25%
+              <input type="radio" value="50" /> 50%
+              <input type="radio" value="75" /> 75%
+              <input type="radio" value="100" /> 100%
+            </div>
+            <div className="order_quantity">
+              <span className="label">Quantitiy</span>
+              <input type="number"></input>
+              <button>Order</button>
+            </div>
           </div>
         </div>
       </section>

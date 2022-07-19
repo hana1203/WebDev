@@ -1,31 +1,103 @@
-@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 @font-face {
-  font-family: "VT323", monospace;
-  src: url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
-}
-.App {
-  text-align: center;
+  font-family: 'EarlyFontDiary';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/EarlyFontDiary.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 *{
   box-sizing: border-box;
+  background-color: #8caf4f;
+  color: #3a4d19;
+  font-family: 'EarlyFontDiary';
 }
 body {
-  margin: 5rem;
+  margin: 1rem;
   padding: 10px;
-  /* background-color: rgb(132, 177, 132); */
 }
 #imoticon {
   font-size: 5rem;
   margin:0
 }
-.menu_container {
+
+section.menu_container {
+  width: 450px;
+  height: 450px;
   display: flex;
-  /* border: 5px solid */
-  /* box-shadow: 3px 3px 3px #fff; */
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .ingredient {
   padding: 10px;
-  border: 2px solid
-
+  border: 4px solid #a5c99b;
+  width: 30%;
+  height: 30%;
+  text-align: center;
+  font-size: large;
 }
+
+.ingredient:hover {
+  border: 4px solid #ebdf81;
+  transition: 0.5s;
+}
+
+section.order_container {
+  width: 450px;
+  height: 250px;
+}
+
+.order_menu {
+  display: flex;
+  justify-content: space-between;
+  width: 450px;
+  height: 140px;
+ 
+}
+
+.selected_menu {
+  width: 135px;
+  height: 135px;
+  padding: 10px;
+  text-align: center;
+  border: 4px solid #ebdf81;
+  font-size: large;
+}
+
+.order_size, .order_sweet, .order_quantity {
+  padding: 10px;
+}
+
+.order_selection {
+  margin-top: 10px;
+  width: 450px;
+  height: 150px;
+  border: 4px solid #a5c99b; 
+}
+
+.order_selection > span {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+  font-weight: 600;
+}
+
+input {
+  margin: 5px
+}
+
+button {
+  background-color: #a5c99b;
+  color: black;
+  padding: 5px;
+  max-width: 30%;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #edf3e6;
+}
+/* .selected_menu {
+  animation: move 1s infinite linear;
+} */
