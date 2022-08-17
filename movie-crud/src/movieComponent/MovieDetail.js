@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import Loading from "../component/Loading";
 
 const MovieDetail = () => {
     const [movie, setMovies] = useState(null);
     const [isPending, setIsPending] = useState(true);
-
     const { id } = useParams();
+    
     useEffect(() => {
         setTimeout(() => {
             fetch('http://localhost:3001/movies/'+ id )
@@ -34,7 +34,11 @@ const MovieDetail = () => {
                     <p>{movie.distributor}</p>
                     <div>{movie.locations}</div>
                     <button>{movie.favorite? "⭐️":"즐겨찾기"}</button>
-                    <button>리뷰 작성</button>
+                    <div>
+                        <Link to={`/movies/${id}/create`} style={{color: 'white', backgroundColor: '#6495ED', borderRadius: '8px'}}>
+                        리뷰 작성   
+                        </Link>
+                        </div>
                 </article>
             )}
         </div>

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Footer from "./component/Footer";
 import Navibar from "./component/Navibar";
 import Home from "./Home";
+import CreateReview from "./movieComponent/CreateReview";
 import MovieDetail from "./movieComponent/MovieDetail";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home movies={movies} isPending={isPending}/>}/>
           <Route path="/movies/:id" element={<MovieDetail />} />
+          <Route path="/movies/:id/create" element={<CreateReview />}></Route>
         </Routes>
       </div>
       <Footer />
