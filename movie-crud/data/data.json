@@ -1,0 +1,12 @@
+{
+    "movies": [
+        {
+            "id": 1,
+            "title": "해리포터와 마법사의 돌",
+            "release_year": "1999",
+            "distributor": "Warner Brothers",
+            "locations": "London",
+            "favorite": true
+        }
+    ]
+}
