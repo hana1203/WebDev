@@ -7,7 +7,12 @@
       "distributor": "Warner Brothers",
       "locations": "London",
       "favorite": true,
-      "reviews": []
+      "reviews": {}
+    },
+    {
+      "review_text": "완전",
+      "author": "ㅎㅎ",
+      "id": 2
     }
   ]
 }
