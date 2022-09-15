@@ -5,13 +5,27 @@ const CreateReview = () => {
   const [textbody, setTextBody] = useState("");
   const [author, setAuthor] = useState("");
   const { id } = useParams();
+  const [movie, setMovies] = useState(null);
 
   const handleSubmit = (e) => {
     let newReview = { review_text: textbody, author: author };
-    fetch(`http://localhost:3001/movies`, {
-      method: "POST",
+    let review = movie.reviews.push(newReview);
+
+    let putData = {
+      id: id,
+      title: movie.title,
+      release_year: movie.release_year,
+      distributor: movie.distributor,
+      locations: movie.locations,
+      favorite: movie.favorite,
+      reviews: review,
+    };
+
+    //왜 안되는것? 개별 영화에 맞게 리뷰 추가하려고 하는디..
+    fetch(`http://localhost:3001/movies/${id}`, {
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newReview),
+      body: review.push(JSON.stringify(putData)),
     })
       .then(() => {
         console.log("new review posted");
